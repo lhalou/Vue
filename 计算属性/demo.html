@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>计算购物车总价</title>
+</head>
+
+<body>
+  <div id="demo">
+    {{prices}}<br>
+    计算属性的缓存----{{now}}<br>
+    通过methods拿到时间戳（方法名加())---- {{thisTime()}}
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    //计算属性可以依赖多个Vue实例中的数据
+    var app2 = new Vue({
+      el: '#demo1',
+      data: {
+        msg: '这是app2的内容'
+      }
+    })
+    //购物车实例
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        package1: [{
+            name: 'phone',
+            price: 3899,
+            count: 3
+          },
+          {
+            name: 'ipad',
+            price: 4099,
+            count: 2
+          }
+        ],
+        package2: [{
+            name: 'phone8',
+            price: 9999,
+            count: 1
+          },
+          {
+            name: 'ipad2',
+            price: 8099,
+            count: 5
+          }
+        ],
+      },
+      computed: {
+        //如果计算属性直接接一个function,那么默认就是getter函数.
+        prices: function () {
+          var prices = 0;
+          //this很重呀
+          for (var i = 0; i < this.package1.length; i++) {
+            prices += this.package1[i].price * this.package1[i].count;
+          }
+          for (var i = 0; i < this.package2.length; i++) {
+            prices += this.package2[i].price * this.package2[i].count;
+          }
+          return prices + '----------------' + app2.msg;
+        },
+        now: function () {
+          return new Date() - 0;
+        }
+      },
+      methods: {
+        thisTime: function () {
+          return new Date() - 0;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

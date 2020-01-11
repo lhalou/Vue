@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    我的名字是 ---- {{fullName}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        firstName: 'li',
+        lastName: 'xiaoxiao'
+      },
+      computed: {
+        //计算属性的默认getter函数用法
+        fullName: {
+          get: function () {
+            return this.firstName + this.lastName;
+          },
+          set: function (newValue) {
+            //用逗号分隔，类似‘li，hu’；
+            var names = newValue.split(','); //分隔为数组;
+            this.firstName = names[0];
+            this.lastName = names[1];
+          }
+          //调用set函数的方法 app.fullName = 'li,hu'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
