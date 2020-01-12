@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .divStyle {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+
+    .borderStyle {
+      border: 10px solid blue;
+    }
+
+    .redColor {
+      background: red;
+    }
+
+    .blueColor {
+      background: blue;
+    }
+
+    .nihao {
+      width: 100px;
+      height: 100px;
+      background: yellow;
+      border: 10px solid green;
+    }
+
+    .active {
+      border: 1px solid red;
+    }
+
+    .error {
+      background: yellow;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  绑定class:<br />
+  <div id="demo">
+    <hr>
+    绑定class的对象语法：对象的键是类名，值是布尔值。是否有类名（即有样式)取决于布尔值。<br />
+    <div :class="{divStyle: isActive,borderStyle: isBorder}"></div>
+    <hr>
+    小demo:<br />
+    <button :class="{redColor:isRed,blueColor:isBlue}" @click="changeColor">点击按钮</button><br />
+    计算属性：<br />
+    <div :class="classNames"></div><br />
+    数组语法绑定class：数组中的成员直接对应类名<br />
+    <div :class="[activeClass,errorClass]"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      //需求：点击按钮，来回切换背景色红，蓝
+      var app = new Vue({
+        el: "#demo",
+        data: {
+          isActive: true,
+          isBorder: false,
+          isRed: true,
+          isBlue: false,
+          activeClass: "active",
+          errorClass: "error"
+        },
+        computed: {
+          classNames: function () {
+            return {
+              nihao: this.isActive && !this.isBorder
+            }
+          }
+        },
+        methods: {
+          changeColor: function () {
+            this.isRed = !this.isRed;
+            this.isBlue = !this.isBlue;
+          }
+        }
+      })
+    </script>
+
+</body>
+
+</html>

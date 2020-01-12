@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    .active {
+      border: 1px solid green;
+    }
+
+    .error {
+      background: yellow;
+      width: 100px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo">
+    <div :class="[{'active':isActive},errorClass]"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        isActive: true,
+        errorClass: "error"
+      }
+    })
+  </script>
+</body>
+
+</html>

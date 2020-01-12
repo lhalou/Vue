@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    绑定style的对象语法：键表示属性名，值表示属性值<br />
+    <div :style="{'color':color,'fontSize':fontSize}">这是文字</div>
+    绑定style的数组语法:<br />
+    <div :style="[styleA,styleB]"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        color: 'red',
+        fontSize: '30px',
+        styleA: {
+          background: 'red'
+        },
+        styleB: {
+          width: '100px',
+          height: '100px'
+        }
+
+      }
+    })
+  </script>
+</body>
+
+</html>
