@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="demo">
+    <div v-for = "value in arr">{{value}}</div>
+    <button @click = "sortArr">点击排序</button>
+    <button @click = "reverseArr">点击翻转</button>
+    <hr/>
+    <button @click = "changeOne">改变数组的指定项</button>
+    <button @click = "arrLength">改变数组的长度</button>
+    <hr/>
+    过滤出符合oo的项:{{matchOO}}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#demo',
+        data: {
+            arr: ['book','pen','pencil']
+    },
+        computed: {
+            matchOO: function(){
+                //参数代表要过滤的每一项
+                return this.arr.filter(function(item){
+                    return item.match(/oo/)
+                })
+            }
+        },
+        methods: {
+            //利用sort方法进行排序
+            sortArr: function(){
+                this.arr.sort(function(a,b){
+                    return a.length - b.length                 })
+            },
+            reverseArr: function(){
+                this.arr.reverse()
+            },
+            //改变数组指定项，Vue检测不到，不能动态渲染页面
+            changeOne: function(){
+                this.arr[0] = "learn";
+            },
+            //改变数组长度
+            arrLength: function(){
+                this.arr.length = 1;
+            }
+        }
+    });
+    Vue.set(app.arr,1,'car');
+</script>
+</body>
+</html>

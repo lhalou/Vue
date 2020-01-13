@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染指令</title>
+</head>
+<body>
+<div id = "demo">
+    v-if后面接等号，等号的内容必须是布尔值.<br>
+    v-if的基本用法： <br/>
+    <p v-if = "6 < 3">{{apple}}</p>
+    <p v-else-if = "9 > 5">{{orange}}</p>
+    <p v-else>{{banana}}</p>
+
+    <hr/>
+    <!--需求：点击按钮，进行用户名输入框和密码输入框的切换-->
+    <div v-if = "type === 'name'">
+        用户名： <input type = "text" placeholder = "请输入用户名" key = "name">
+    </div>
+    <div v-else>
+        密码： <input type = "password" placeholder = "请输入密码" key = "password">
+    </div>
+    <button @click = "typeChange">点击切换</button>
+    <!--此时，存在一个bug,input框被复用了，并没有重新渲染，只重新渲染了密码和用户名这个字.,解决办法：加key-->
+
+    <hr/>
+    v-show用法：显现与否取决于布尔值<br/>
+    <p v-show = "9>a">v-show显现</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#demo',
+        data: {
+            apple: 'apple',
+            orange: 'orange',
+            banana: 'banana',
+            type: 'name',
+            a: 5
+        },
+        methods: {
+            typeChange: function(){
+                this.type = (this.type === 'name' ? 'password' : 'name')
+            }
+        }
+    })
+</script>
+</body>
+</html>

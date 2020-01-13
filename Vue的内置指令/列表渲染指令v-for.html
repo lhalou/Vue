@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id = "demo">
+    v-for: 遍历多个对象<br/>
+    v-for：一定要写在遍历的元素上，后接等号，等号的内容类似于'item in items'<br/>
+    学好Vue.js的方法:
+    <ul>
+        <li v-for = "stM in studyMethods">{{stM.name}}</li>
+    </ul>
+    <br/>
+    带索引的方法：括号内第一个元素代表item，第二个元素代表index。
+    <ul>
+        <li v-for = "(stM,index) in studyMethods">{{index}} ---- {{stM.name}}</li>
+    </ul>
+    <hr>
+    v-for遍历一个对象的多个属性：<br/>
+    <span v-for = "value in nvShen">{{value}} <br/> </span><br/>
+    拿到value,key,index的写法,在括号中的顺序不能变<br/>
+    <span v-for = "(value,key,index) in nvShen">{{index}} ---- {{key}} --- {{value}} <br/> </span><br/>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#demo',
+        data: {
+            //每个对象对应一个li
+            studyMethods: [
+                {name: '认真思考'},
+                {name: '多动手'},
+                {name: '看文档'}
+            ],
+            nvShen: {
+                girl: '赵丽颖',
+                girl2: '杨幂',
+                girl3: '古力娜扎'
+            }
+        }
+    })
+</script>
+</body>
+</html>

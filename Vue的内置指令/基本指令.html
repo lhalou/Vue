@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的内置指令</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div id = "app">
+    v-cloak:解决初始化慢导致页面闪动问题。<br/>
+    <p v-cloak>{{msg}}</p>
+
+    <hr>
+    v-once: 定义它的元素或组件只渲染一次<br>
+    <span v-once>{{onceData}}</span>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: '页面渲染',
+            onceData: '只渲染一次'
+        }
+    })
+</script>
+</body>
+</html>
