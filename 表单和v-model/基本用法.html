@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="demo">
+    v-model的基本用法：
+    <input type = "text" v-model = "value"><br/>
+    {{value}}
+    <hr/>
+    不在关心初始化的值，只关心双向绑定的数据:
+    <textarea name="" id="" cols="30" rows="2" v-model = "msg">这是多行文本</textarea><br/>
+    {{msg}}
+    <hr/>
+    单选框：<br/>
+    单个单选框：<input type = "radio" :checked = "oneRadio">
+    --------此处用v-model不生效
+    <br/>
+    多个单选框：v-model绑定的是选中的单选框的value值<br/>
+    run: <input type="radio" name="checks" value = "run" v-model = "checkName"><br/>
+    music:<input type = "radio" name = "checks" value = "music" v-model = "checkName"><br/>
+    read:<input type = "radio" name = "checks" value = "read" v-model = "checkName"><br/>
+    --------{{checkName}}
+    <hr/>
+    复选框<br/>
+    单个复选框---v-model:<input type="checkbox" v-model = "oneRadio"><br/>
+    单个复选框---v-bind:<input type="checkbox" :checked = "oneRadio"><br/>
+    多个复选框：<br/>
+    run: <input type="checkbox" value = "run" v-model = "checks">
+    music: <input type="checkbox" value = "music" v-model = "checks">
+    read:<input type="checkbox" value = "read" v-model = "checks">
+    -------{{checks}}
+    <hr/>
+    下拉框<br/>
+    单个下拉框：
+    <select v-model = "selected">
+        <option value = "run">run</option>
+        <option value = "music">music</option>
+        <option value = "read">read</option>
+    </select>
+    --------{{selected}}
+    <br/>
+    多选下拉框：
+    <select v-model = "selectedMul" multiple>
+        <option value = "run">run</option>
+        <option value = "music">music</option>
+        <option value = "read">read</option>
+    </select>
+    ---------{{selectedMul}}
+    <hr style = "color: red">
+    绑定值：<br/>
+    单选按钮:<input type="radio" v-model = "picked" v-bind:value = "value"> --- {{picked}}<br/>
+    复选按钮：选中和不选中的value不一样。
+    <input type="checkbox" v-model = "toggle" :true-value = "value1" :false-value = "value2">
+    -----{{toggle}}<br/>
+    选中：{{toggle == value1}}<br/>
+    未选中:{{toggle == value2}}
+    <hr/>
+    下拉框：<br/>
+    <select v-model = "selected" >
+        <option value = "run" :value = {num:111}>run</option>
+        <option value = "music">music</option>
+        <option value = "read">read</option>
+    </select>
+ ----- {{selected}}
+    <hr/>
+    修饰符:
+    <input type="text" v-model = "inputStr"> ----- {{inputStr}}
+    <input type="text" v-model.lazy = "lazyStr"> ----- {{lazyStr}}
+    <input type="text" v-model.trim = "trimStr"> ----- {{trimStr.split('')}}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#demo',
+        data: {
+            value: '1111',
+            msg: '这是双向绑定的数据',
+            oneRadio: true,
+            checkName: '',
+            checks: [],
+            selected: '',
+            selectedMul: '',
+            picked: true,
+            toggle: true,
+            value1: '选中',
+            value2: '未选中',
+            inputStr: '',
+            lazyStr: '',
+            trimStr: ''
+        }
+    })
+</script>
+</body>
+</html>
