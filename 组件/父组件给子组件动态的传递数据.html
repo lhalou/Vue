@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <div style="border: 1px solid red;height: 160px;">
+      <h5 style="text-align: center">这是父组件</h5>
+      <input type="text" v-model="parentmsg">
+      <child-component :msg="parentmsg"></child-component>
+      <hr />
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        parentmsg: '你好么？'
+      },
+      components: {
+        'child-component': {
+          props: ['msg'],
+          template: '<div>{{msg}}</div>'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,41 +1,44 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>数据绑定和指令</title>
 </head>
+
 <body>
-<div id = "app">
-    <!--文本插值的用法-->
-    {{msg}}<br>
-    {{ 6 + 6 }} ---简单的运算<br>
-    {{ 6 > 3 ? msg : a}} ---三元运算符
-</div>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script>
-    //创建Vue实例,是整个程序的启动入口，Vue实例要挂载到DOM节点
-    var app = new Vue({
-        //element，用于指定页面中已经存在的DOM元素，挂载到DOM中
-        el: '#app',
-        //声明应用内需要双向绑定的数据
-        data: {
-            msg: 'Vue学习开始了。'
-        },
-        created: function(){
-            alert('我是Vue实例，创建完成，还未挂载');
-        },
-        mounted: function(){
-            alert('我是Vue实例，已经未挂载');
-        }
-    });
-    //访问Vue实例中的元素使用$
-    console.log(app.$el);
-    console.log(app.$data);
-    //访问data内的属性
-    console.log(app.msg);
-</script>
+    <div id="app">
+        <!--文本插值的用法-->
+        {{msg}}<br>
+        {{ 6 + 6 }} ---简单的运算<br>
+        {{ 6 > 3 ? msg : a}} ---三元运算符
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        //创建Vue实例,是整个程序的启动入口，Vue实例要挂载到DOM节点
+        var app = new Vue({
+            //element，用于指定页面中已经存在的DOM元素，挂载到DOM中
+            el: '#app',
+            //声明应用内需要双向绑定的数据
+            data: {
+                msg: 'Vue学习开始了。'
+            },
+            created: function () {
+                alert('我是Vue实例，创建完成，还未挂载');
+            },
+            mounted: function () {
+                alert('我是Vue实例，已经未挂载');
+            }
+        });
+        //访问Vue实例中的元素使用$
+        console.log(app.$el);
+        console.log(app.$data);
+        //访问data内的属性
+        console.log(app.msg);
+    </script>
 </body>
+
 </html>

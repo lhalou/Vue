@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo" style="border: 1px solid red;">
+    <!--使用组件-->
+    <my-component></my-component>
+    <table>
+      <!--因为HTL标签的限制，所以要使用is来挂载组件-->
+      <tbody is="my-component"></tbody>
+    </table>
+  </div>
+  <div id="demo1">
+    <demo-component></demo-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    //全局注册组件,组件一定要定义在实例之前！！！！
+    Vue.component('my-component', {
+      template: '<div>我是demo一个组件</div>'
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {}
+    })
+
+    //局部注册组件
+    var app1 = new Vue({
+      el: '#demo1',
+      components: {
+        'demo-component': {
+          template: '<div>我是demo1一个组件</div>'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

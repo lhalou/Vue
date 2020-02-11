@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  在父组件里像子组件传递消息：<br />
+  <div id="demo" style="border: 1px solid red; height: 200px">
+    <h5 style="text-align: center">我是父组件</h5>
+    <child-component msg="这是父组件传递过来的信息"></child-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      components: {
+        'child-component': {
+          props: ['msg'],
+          template: '<div style = "border: 1px solid green;height:80px;">{{msg}}</div>'
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
