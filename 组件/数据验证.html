@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <type-component :a="a" :b="b" :c="c" :d="d" :e="e" :g="g"></type-component>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        a: 1,
+        b: 666,
+        c: true,
+        d: 1111,
+        e: [],
+        f: 88,
+        g: console.log()
+      },
+      components: {
+        'type-component': {
+          //在props对数据类型进行限定，props必须是对象  
+          props: {
+            a: String,
+            b: [String, Number],
+            //必须是布尔类型，默认值是true type --- required --- default
+            c: {
+              type: Boolean,
+              default: true
+            },
+            d: {
+              type: Number,
+              required: true
+            },
+            e: {
+              type: Array,
+              default: function () {
+                return [6, 6, 6]
+              }
+            },
+            f: {
+              //自定义一个验证函数
+              validator: function (value) {
+                return value > 10
+              }
+            },
+            g: {
+              type: Function
+            }
+          },
+          template: '<div>{{a}} --- {{b}} --- {{c}} --- {{d}} --- {{e}} --- {{g}}</div>'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

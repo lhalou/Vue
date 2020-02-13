@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <h3>另外一种就是prop作为需要被转变的原始值传入，这种情况下用计算属性就可以了.</h3>
+    <!--需求：通过input输入的数据，直接改变div的宽度-->
+    <input type="text" v-model="width">
+    <child-component :width="width"></child-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        width: 0
+      },
+      components: {
+        'child-component': {
+          props: ['width'],
+          template: '<div :style = "style"></div>',
+          computed: {
+            style: function () {
+              return {
+                width: this.width + 'px',
+                background: 'red',
+                height: '100px'
+              }
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <h3>
+      第一种情况:父组件传递初始值进来，子组件将它作为初始值保存起来，在自己的作用域下可以随意使用和修改，这种情况
+      可以在组件data内在声明一个数据，引用父组件的prop
+    </h3>
+    <child-component msg="我是父组件向子组件传递的数据"></child-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      components: {
+        'child-component': {
+          props: ['msg'],
+          template: '<div>{{count}}<div>',
+          data: function () {
+            return {
+              //props中的值可以通过this.xxx直接获取到
+              count: this.msg
+              //好处只需要维护count,msg的变化会动态传递给count
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
