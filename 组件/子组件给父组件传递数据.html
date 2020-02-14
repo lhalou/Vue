@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子组件给父组件传递数据</title>
+</head>
+
+<body>
+  <div id="demo">
+    您现在的银行卡余额：{{total}}
+    <child-component @change="handleTotal"></child-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    //需求：通过加号和减号按钮给父组件传递数据
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        total: 2000
+      },
+      components: {
+        'child-component': {
+          template: '<div>\
+                      <button @click = "handleincrease"> +1000 </button>\
+                      <button @click="handlereduce"> -1000 </button>\
+                    </div>',
+          data: function () {
+            return {
+              count: 2000
+            }
+          },
+          methods: {
+            handleincrease: function () {
+              this.count = this.count + 1000
+              this.$emit('change', this.count)
+            },
+            handlereduce: function () {
+              this.count = this.count - 1000
+              this.$emit('change', this.count)
+            }
+          }
+        }
+      },
+      methods: {
+        handleTotal: function (value) {
+          //value就是传递过来的数据this.count
+          this.total = value
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

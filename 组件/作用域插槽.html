@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="demo">
+    <child-component>
+      <!--prop是临时变量名-->
+      <p slot="abc" slot-scope="prop">
+        <!--只能拿到name以外的东西-->
+        {{prop.text}}
+      </p>
+    </child-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    //作用于插槽的主要作用：从子组件获取数据
+    var app = new Vue({
+      el: "#demo",
+      components: {
+        'child-component': {
+          template: '<div>\
+                      <slot text = "我是来自父组件的内容" name = "abc">\
+                      </slot>\
+                    </div>'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

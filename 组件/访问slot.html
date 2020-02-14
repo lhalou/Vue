@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <child-component>
+      <h3 slot="header">我是标题</h3>
+      <p>我是正文内容</p>
+      <p>正文内容有两段</p>
+      <p slot="footer">我是底部信息</p>
+    </child-component>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      components: {
+        'child-component': {
+          template: '<div>\
+            <div class="header">\n' +
+            ' <slot name="header">\n' +
+            ' \n' +
+            ' </slot>\n' +
+            '</div>\n' +
+            '<div class="contatiner">\n' +
+            ' <slot>\n' +
+            ' \n' +
+            ' </slot>\n' +
+            '</div>\n' +
+            '<div class="footer">\n' +
+            ' <slot name="footer">\n' +
+            '\n' +
+            ' </slot> \n' +
+            '</div>' +
+            ' </div>',
+          mounted: function () {
+            //访问slot this,slots.name
+            var header = this.$slots.header
+            console.log(header)
+            var text = header[0].elm.innerText
+            console.log(text)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

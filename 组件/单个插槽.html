@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="demo">
+    <child-component>
+      <p>这是父组件插入的内容</p>
+    </child-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      components: {
+        'child-component': {
+          template: '<div>\
+                  <slot>如果父组件没有插入内容，请默认显示</slot>\
+                </div>'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

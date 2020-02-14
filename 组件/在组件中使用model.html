@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在组件中使用v-model</title>
+</head>
+
+<body>
+  <div id="demo">
+    我的银行卡余额 --- {{total}}
+    <child-component v-model="total"></child-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    //v-model，其实就是绑定了input事件，当触发input事件的时候，input事件就会自动接收传递过来的参数this.count,
+    //并赋值给已经绑定的total
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        total: 2000
+      },
+      components: {
+        'child-component': {
+          template: '<div>\
+            <button @click="handleincrease"> +1000 </button>\
+          </div>',
+          data: function () {
+            return {
+              count: 2000
+            }
+          },
+          methods: {
+            handleincrease: function () {
+              this.count = this.count + 1000
+              this.$emit('input', this.count)
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

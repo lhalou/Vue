@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <a-component ref="a"></a-component>
+    <b-component ref="b"></b-component>
+    <hr />
+    <child-component ref="c"></child-component> --- {{msg}}
+    <hr />
+    <button @click="getchild">我是父组件的按钮，我想拿到子组件的内容</button> --- {{formchild}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        bus: new Vue(),
+        msg: '数据还没修改',
+        formchild: '还未拿到'
+      },
+      components: {
+        'a-component': {
+          template: '<div><button @click = "handle">点击我想b组件传递内容</button></div>',
+          data: function () {
+            return {
+              aaa: '我是a组件像b组件传递的内容',
+              msg: '我是a中的mag'
+            }
+          },
+          methods: {
+            handle: function () {
+              //在子组件中访问根组件的内容this.$root.
+              this.$root.bus.$emit('lala', this.aaa)
+            }
+          }
+        },
+        'b-component': {
+          template: '<div></div>',
+          //a组件在实例创建的时候，就监听lala事件
+          data: function () {
+            return {
+              msg: '我是bb中的mag'
+            }
+          },
+          created: function () {
+            this.$root.bus.$on('lala', function (value) {
+              alert(value)
+            })
+          }
+        },
+        //子组件修改父组件的内容
+        'child-component': {
+          template: '<button @click = "handle">点击我修改父组件的数据</button>',
+          data: function () {
+            return {
+              msg: '我是cccc中的mag'
+            }
+          },
+          methods: {
+            handle: function () {
+              //拿到父组件data中定义的属性
+              this.$parent.msg = "数据已经修改了"
+            }
+          }
+        }
+      },
+      methods: {
+        getchild: function () {
+          //使用this.$child会获取到所有的child，所以为子组件提供了一个索引属性ref
+          //此方法用来获取子组件中的内容
+          this.formchild = this.$refs.b.msg
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
