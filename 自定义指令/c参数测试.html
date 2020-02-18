@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <div v-ceshi:ceshi.a.b.c="obj">
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.directive('ceshi', {
+      bind: function (el, binding, vnode) {
+        let array = [];
+        for (let key in vnode) {
+          array.push(key)
+        }
+        el.innerHTML =
+          'name' + '---------------' + binding.name + '<br/>' +
+          'value' + '---------------' + binding.value + '<br />' +
+          'expression' + '---------------' + binding.expression + '<br />' +
+          'argument' + '---------------' + binding.arg + '<br />' +
+          'modifiers' + '---------------' + JSON.stringify(binding.modifiers) + '<br />' +
+          'keys' + '---------------' + array.join('---') + '<br />'
+      }
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        obj: '我是自定义指令所绑定的值'
+      }
+    })
+  </script>
+</body>
+
+</html>

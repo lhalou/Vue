@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="demo">
+      <component :is="thisView"></component>
+      <button @click="handleView('A')">这是第1个</button>
+      <button @click="handleView('B')">这是第2个</button>
+      <button @click="handleView('C')">这是第3个</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      //需求：通过点击不同的按钮，切换不同的视图
+      var app = new Vue({
+        el: "#demo",
+        data: {
+          thisView: "A"
+        },
+        components: {
+          compA: {
+            template: "<div>这是第一句</div>"
+          },
+          compB: {
+            template: "<div>这是第二句</div>"
+          },
+          compC: {
+            tempalte: "<div>这是第三句</div>"
+          }
+        },
+        methods: {
+          handleView: function(type) {
+            this.thisView = "comp" + type;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
