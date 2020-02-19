@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <child>
+      <p>这是内容1</p>
+      <p>这是内容2</p>
+      <h1 slot="header">这是大标题</h1>
+      <h6 slot="footer">这是底部</h6>
+    </child>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('child', {
+      render: function (createElement) {
+        var header = this.$slots.header
+        var footer = this.$slots.footer
+        var main = this.$slots.default
+        return createElement('div', [
+          createElement('header', header), //获取到的header其实是含有虚拟节点的数组
+          createElement('main', main),
+          createElement('footer', footer)
+        ])
+      }
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

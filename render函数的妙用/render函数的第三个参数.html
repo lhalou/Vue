@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <child></child>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('child', {
+      render: function (createElement) {
+        return createElement('div', [
+          createElement('h1', '我是H1'),
+          createElement('h6', '我是h6')
+        ])
+      }
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {}
+    })
+  </script>
+</body>
+
+</html>

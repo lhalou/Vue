@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+
+    <child>
+
+    </child>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('child', {
+      render: function (createElement) {
+        return createElement({
+          template: '<div>这是第二个参数</div>'
+        }, {
+          'class': {
+            foo: true,
+            baz: false
+          },
+          style: {
+            color: 'red'
+          },
+          attrs: {
+            id: 'foo',
+          },
+          domProps: {
+            innerHTML: '<em>这是加粗</em>'
+          }
+        })
+      }
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {}
+    })
+  </script>
+</body>
+
+</html>

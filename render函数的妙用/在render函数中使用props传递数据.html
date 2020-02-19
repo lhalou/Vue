@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <button @click="switchshow">点击切换</button> ----{{show}}
+    <child :show="show">
+
+    </child>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('child', {
+      props: ['show'],
+      render: function (createElement) {
+        var imgsrc;
+        if (this.show) {
+          imgsrc = "https://img95.699pic.com/photo/50055/5642.jpg_wh860.jpg"
+        } else {
+          imgsrc = "https://static.runoob.com/images/demo/demo1.jpg"
+        }
+        return createElement('img', {
+          attrs: {
+            src: imgsrc
+          },
+          style: {
+            width: '600px',
+            height: '400px'
+          }
+        })
+      }
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        show: false
+      },
+      methods: {
+        switchshow: function () {
+          this.show = !this.show
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

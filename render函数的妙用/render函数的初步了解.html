@@ -9,13 +9,46 @@
 
 <body>
   <div id="demo">
-
+    <child-component :level="level">
+      数据数据数据
+    </child-component>
   </div>
+  <!--缺点：因为是v-if指令，会先渲染，在移除-->
+  <!-- <template id="hdom">
+    <div>
+      <h1 v-if="level==1">
+        <slot></slot>
+      </h1>
+      <h2 v-if="level==2">
+        <slot></slot>
+      </h2>
+      <h3 v-if="level==3">
+        <slot></slot>
+      </h3>
+    </div>
+
+  </template> -->
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script>
+    //使用Vue组件定义
+    //Vue.component('child-component', {
+    //props: ['level'],
+    //template: '#hdom'
+    // })
+
+
+    //使用render函数
+    Vue.component('child-component', {
+      render: function (createElement) {
+        return createElement('h' + this.level, this.$slots.default)
+      },
+      props: ['level']
+    })
     var app = new Vue({
       el: '#demo',
-      data: {}
+      data: {
+        level: 2
+      }
     })
   </script>
 </body>

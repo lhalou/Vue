@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <child>
+      这是数据数据数据
+    </child>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('child', {
+      render: function (createElement) {
+        //第一个参数必选
+        //string ----- HTML标签
+
+        // return createElement('div')
+
+
+
+        //Object ----- 一个含有数据选项的对象、
+        // return createElement({
+        //   template: '<div>这是对象参数</div>'
+        // })
+
+
+
+        //Function ----- 方法返回含有数据选项的对象
+        var random = function () {
+          return {
+            template: '<div>这是函数数据</div>'
+          }
+        }
+        return createElement(random())
+      }
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <!-- <child @input="showname" :name="name"> -->
+    <child :name="name" v-model="name">
+
+    </child>
+    {{name}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('child', {
+      props: ['name'],
+      render: function (createElement) {
+        var self = this //指的就是当前的VUE实例
+        return createElement('input', {
+          domProps: {
+            value: self.name
+          },
+          on: {
+            input: function (evevt) {
+              //此处的this是window，只能使用VUE实例调用$emit()
+              self.$emit('input', event.target.value)
+            }
+          }
+        })
+      }
+
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        name: 'jack'
+      }
+      // },
+      // methods: {
+      //   showname: function (value) {
+      //     this.name = value
+      //   }
+      // }
+    })
+  </script>
+</body>
+
+</html>
